@@ -5,7 +5,6 @@ import { PizzaType } from '../../types'
 
 function Menu() {
   const menu = useLoaderData<PizzaType[]>()
-  console.log(menu)
 
   return (
     <ul>
