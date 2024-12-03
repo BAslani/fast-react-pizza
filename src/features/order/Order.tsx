@@ -1,6 +1,6 @@
 // Test ID: IIDSAT
 
-import { useLoaderData } from 'react-router-dom'
+import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
 import { getOrder } from '../../services/apiRestaurant'
 import {
   calcMinutesLeft,
@@ -52,7 +52,10 @@ function Order() {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export async function loader({ params }) {
+export async function loader({ params }: LoaderFunctionArgs) {
+  if (!params.orderId) {
+    throw new Error('id not found')
+  }
   const order = await getOrder(params.orderId)
   return order
 }
