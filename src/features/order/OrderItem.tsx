@@ -2,7 +2,7 @@ import { formatCurrency } from "../../utils/helpers";
 
 type Props = {
   item: {
-    id: string;
+    pizzaId: string;
     quantity: number;
     name: string;
     totalPrice: number;
