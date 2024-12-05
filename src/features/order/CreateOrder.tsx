@@ -8,6 +8,7 @@ import {
 import { createOrder } from "../../services/apiRestaurant";
 import { OrderType } from "../../types";
 import Button from "../../ui/Button";
+import { useAppSelector } from "../../store";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str: string) =>
@@ -45,6 +46,7 @@ function CreateOrder() {
   const formErrors = useActionData();
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
+  const { username } = useAppSelector((state) => state.user);
 
   return (
     <div className="px-4 py-6">
@@ -53,7 +55,13 @@ function CreateOrder() {
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
-          <input type="text" name="customer" required className="input grow" />
+          <input
+            type="text"
+            name="customer"
+            defaultValue={username}
+            required
+            className="input grow"
+          />
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
